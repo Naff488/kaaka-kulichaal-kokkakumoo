@@ -67,10 +67,10 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden">
       {/* Audio elements */}
       <audio ref={crowSoundRef} preload="auto">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+LqwGEcBzaE0e/AYyIDJnDE7+ORMQSNN8aXNCIDAGO67L" type="audio/wav" />
+        <source src="/sounds/crow-sound.mp3" type="audio/mpeg" />
       </audio>
       <audio ref={waterSoundRef} preload="auto">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+LqwGEcBzaE0e/AYyIDJnDE7+ORMQSNN8aXNCIDAGO67L" type="audio/wav" />
+        <source src="/sounds/water-splash.wav" type="audio/wav" />
       </audio>
 
       {/* Background */}
