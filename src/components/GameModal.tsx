@@ -22,20 +22,26 @@ export const GameModal = ({ onStart }: GameModalProps) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+       style={{
+    backgroundImage: `url('https://your-image-link.com/image.jpg')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  }}
+>
       {showQuestion && (
         <Card className="w-full max-w-md mx-auto text-center animate-scale-in">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-primary">
-              Welcome to BathingCrow! 🐦‍⬛
+              Welcome to കാകയെ കുളിപ്പിക്കൽ ! 🐦‍⬛
             </CardTitle>
             <CardDescription className="text-lg">
-              A mysterious question appears...
+             
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="text-xl font-semibold text-foreground">
-              "Will this crow turn out to be a swan?"
+              "കാക്ക കുളിച്ചാൽ കൊക്ക് ആകുമോ?"
             </div>
             <div className="flex gap-4 justify-center">
               <Button 
