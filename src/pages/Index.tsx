@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GameModal } from '@/components/GameModal';
 import { GameOverModal } from '@/components/GameOverModal';
 import { Crow } from '@/components/Crow';
@@ -13,12 +13,27 @@ const Index = () => {
   const [isWaterOn, setIsWaterOn] = useState(false);
   const [isCrowUpset, setIsCrowUpset] = useState(false);
   const [isBeautiful, setIsBeautiful] = useState(false);
+  const [showFinalMessage, setShowFinalMessage] = useState(false);
+  
+  const crowSoundRef = useRef<HTMLAudioElement>(null);
+  const waterSoundRef = useRef<HTMLAudioElement>(null);
 
-  const handleAnswer = (answer: boolean) => {
-    setIsCrowUpset(true);
-    setTimeout(() => {
-      setGameState('gameOver');
-    }, 1500);
+  const handleStart = () => {
+    setGameState('playing');
+  };
+
+  const handleCrowTouch = () => {
+    if (crowSoundRef.current) {
+      crowSoundRef.current.currentTime = 0;
+      crowSoundRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleWaterSound = () => {
+    if (waterSoundRef.current) {
+      waterSoundRef.current.currentTime = 0;
+      waterSoundRef.current.play().catch(() => {});
+    }
   };
 
   const handleSoapDrag = () => {
@@ -36,13 +51,28 @@ const Index = () => {
   };
 
   useEffect(() => {
-    if (scrubCount >= 10) {
+    if (scrubCount >= 10 && isBeautiful && !showFinalMessage) {
+      setTimeout(() => {
+        setShowFinalMessage(true);
+        setTimeout(() => {
+          setGameState('gameOver');
+        }, 3000);
+      }, 2000);
+    } else if (scrubCount >= 10) {
       setIsBeautiful(true);
     }
-  }, [scrubCount]);
+  }, [scrubCount, isBeautiful, showFinalMessage]);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {/* Audio elements */}
+      <audio ref={crowSoundRef} preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+LqwGEcBzaE0e/AYyIDJnDE7+ORMQSNN8aXNCIDAGO67L" type="audio/wav" />
+      </audio>
+      <audio ref={waterSoundRef} preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+LqwGEcBzaE0e/AYyIDJnDE7+ORMQSNN8aXNCIDAGO67L" type="audio/wav" />
+      </audio>
+
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center bathroom-tile"
@@ -63,7 +93,11 @@ const Index = () => {
               
               {/* Faucet */}
               <div className="mb-8">
-                <Faucet isOn={isWaterOn} onToggle={() => setIsWaterOn(!isWaterOn)} />
+                <Faucet 
+                  isOn={isWaterOn} 
+                  onToggle={() => setIsWaterOn(!isWaterOn)}
+                  onWaterSound={handleWaterSound}
+                />
               </div>
               
               {/* Bathtub area with crow */}
@@ -94,6 +128,7 @@ const Index = () => {
                     isBeautiful={isBeautiful}
                     isUpset={isCrowUpset}
                     scrubCount={scrubCount}
+                    onTouch={handleCrowTouch}
                   />
                 </div>
                 
@@ -104,14 +139,18 @@ const Index = () => {
               {/* Instructions */}
               <div className="text-center space-y-2">
                 <p className="text-lg font-semibold">
-                  {isBeautiful ? 
-                    "✨ Your crow is now beautiful! ✨" : 
-                    "Drag the soap to scrub your crow!"
+                  {showFinalMessage ? 
+                    "A crow will never turn out to be a swan." :
+                    isBeautiful ? 
+                      "✨ Your crow is now beautiful! ✨" : 
+                      "Drag the soap to scrub your crow!"
                   }
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  Turn on the faucet and drag the soap around to clean your crow
-                </p>
+                {!showFinalMessage && (
+                  <p className="text-sm text-muted-foreground">
+                    Turn on the faucet and drag the soap around to clean your crow
+                  </p>
+                )}
               </div>
             </div>
           </>
@@ -120,10 +159,7 @@ const Index = () => {
 
       {/* Modals */}
       {gameState === 'intro' && (
-        <GameModal onAnswer={(answer) => {
-          handleAnswer(answer);
-          setGameState('playing');
-        }} />
+        <GameModal onStart={handleStart} />
       )}
       
       {gameState === 'gameOver' && (

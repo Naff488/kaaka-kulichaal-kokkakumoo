@@ -3,14 +3,22 @@ import { useState } from 'react';
 interface FaucetProps {
   isOn: boolean;
   onToggle: () => void;
+  onWaterSound: () => void;
 }
 
-export const Faucet = ({ isOn, onToggle }: FaucetProps) => {
+export const Faucet = ({ isOn, onToggle, onWaterSound }: FaucetProps) => {
+  const handleToggle = () => {
+    onToggle();
+    if (!isOn) {
+      onWaterSound();
+    }
+  };
+
   return (
     <div className="relative">
       {/* Faucet */}
       <button
-        onClick={onToggle}
+        onClick={handleToggle}
         className="w-20 h-16 bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-lg rounded-b-none relative shadow-lg hover:scale-105 transition-transform"
       >
         <div className="w-8 h-8 bg-gradient-to-b from-blue-400 to-blue-500 rounded-full absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2" />

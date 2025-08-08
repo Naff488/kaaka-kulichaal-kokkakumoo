@@ -6,9 +6,10 @@ interface CrowProps {
   isBeautiful: boolean;
   isUpset: boolean;
   scrubCount: number;
+  onTouch: () => void;
 }
 
-export const Crow = ({ isBeautiful, isUpset, scrubCount }: CrowProps) => {
+export const Crow = ({ isBeautiful, isUpset, scrubCount, onTouch }: CrowProps) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
@@ -41,6 +42,8 @@ export const Crow = ({ isBeautiful, isUpset, scrubCount }: CrowProps) => {
         src={isBeautiful ? crowBeautiful : crowNormal}
         alt="Crow"
         className={getClassName()}
+        onClick={onTouch}
+        style={{ cursor: 'pointer' }}
       />
       {isBeautiful && (
         <>
