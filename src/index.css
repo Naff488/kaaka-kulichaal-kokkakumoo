@@ -2,41 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* BathingCrow Design System - Cute & Playful Virtual Pet Game */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Soft Sky Background */
+    --background: 205 100% 95%;
+    --foreground: 230 15% 25%;
 
+    /* Card & Surface Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 230 15% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 230 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Soft Purple for buttons */
+    --primary: 260 60% 65%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm Peach */
+    --secondary: 25 85% 85%;
+    --secondary-foreground: 230 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Light Lavender */
+    --muted: 250 30% 92%;
+    --muted-foreground: 230 15% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Soft Mint */
+    --accent: 160 40% 80%;
+    --accent-foreground: 230 15% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Danger - Soft Red */
+    --destructive: 0 70% 70%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders & Inputs */
+    --border: 250 30% 85%;
+    --input: 250 30% 90%;
+    --ring: 260 60% 65%;
 
-    --radius: 0.5rem;
+    /* Game Colors */
+    --water: 200 80% 75%;
+    --bubble: 200 50% 90%;
+    --soap: 300 40% 85%;
+    --crow-normal: 240 10% 25%;
+    --crow-beautiful: 320 50% 75%;
+    --bathroom-tile: 180 20% 95%;
+
+    /* Gradients */
+    --gradient-water: linear-gradient(135deg, hsl(200 80% 85%), hsl(220 70% 80%));
+    --gradient-bubble: radial-gradient(circle, hsl(200 50% 95%), hsl(200 50% 85%));
+    --gradient-soap: linear-gradient(45deg, hsl(300 40% 90%), hsl(280 35% 85%));
+    --gradient-magical: linear-gradient(135deg, hsl(320 60% 85%), hsl(280 50% 80%), hsl(240 60% 85%));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsla(260, 30%, 70%, 0.2);
+    --shadow-bubble: 0 2px 10px hsla(200, 50%, 70%, 0.3);
+    --shadow-magical: 0 8px 32px hsla(320, 60%, 70%, 0.4);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +81,37 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode for evening crow bathing */
+    --background: 230 25% 15%;
+    --foreground: 250 30% 90%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 230 20% 20%;
+    --card-foreground: 250 30% 90%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 230 20% 20%;
+    --popover-foreground: 250 30% 90%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 260 50% 70%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 25 60% 60%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 230 15% 25%;
+    --muted-foreground: 250 20% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 160 30% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 60% 65%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 230 15% 30%;
+    --input: 230 15% 25%;
+    --ring: 260 50% 70%;
+
+    --bathroom-tile: 230 15% 30%;
+    --gradient-water: linear-gradient(135deg, hsl(200 60% 50%), hsl(220 50% 45%));
   }
 }
 
@@ -100,6 +121,115 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans overflow-hidden;
+  }
+}
+
+@layer components {
+  /* Bubble Animation */
+  .bubble {
+    @apply absolute rounded-full bg-gradient-to-br from-bubble to-transparent animate-pulse;
+    box-shadow: var(--shadow-bubble);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Water Animation */
+  .water-flow {
+    background: var(--gradient-water);
+    animation: waterFlow 2s ease-in-out infinite;
+  }
+
+  /* Crow Animation */
+  .crow-happy {
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  .crow-upset {
+    animation: shake 0.5s ease-in-out 3;
+  }
+
+  /* Soap Dragging */
+  .soap-draggable {
+    transition: transform 0.2s ease;
+    cursor: grab;
+  }
+
+  .soap-draggable:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+  }
+
+  /* Magical Transformation */
+  .magical {
+    background: var(--gradient-magical);
+    box-shadow: var(--shadow-magical);
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+
+  /* Game UI */
+  .game-button {
+    @apply px-6 py-3 rounded-full font-semibold transition-all duration-300;
+    @apply bg-primary text-primary-foreground hover:scale-105;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .bathroom-tile {
+    background: hsl(var(--bathroom-tile));
+    background-image: 
+      linear-gradient(45deg, transparent 25%, hsla(0,0%,100%,0.1) 25%), 
+      linear-gradient(-45deg, transparent 25%, hsla(0,0%,100%,0.1) 25%);
+    background-size: 20px 20px;
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-20px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes waterFlow {
+  0%, 100% { 
+    transform: scaleY(1);
+  }
+  50% { 
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { 
+    transform: translateY(0px);
+  }
+  50% { 
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { 
+    transform: translateX(0px);
+  }
+  25% { 
+    transform: translateX(-5px);
+  }
+  75% { 
+    transform: translateX(5px);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(1.2);
   }
 }
